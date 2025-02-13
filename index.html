@@ -1,113 +1,113 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GradeUpAI - Studieassistent</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #3b82f6, #9333ea);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            width: 350px;
-            text-align: center;
-            color: black;
-        }
-        input {
-            width: 90%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-bottom: 10px;
-        }
-        button {
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #2563eb;
-        }
-        .response-box {
-            margin-top: 15px;
-            padding: 10px;
-            background: #f3f4f6;
-            color: black;
-            border-radius: 6px;
-            text-align: left;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GradeUpAI - Studieassistent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #3b82f6, #9333ea);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+      color: black;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #2563eb;
+    }
+    .response-box {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f3f4f6;
+      color: black;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>📚 GradeUpAI - Studieassistent 📚</h2>
-        <input type="text" id="questionInput" placeholder="Skriv dit spørgsmål her...">
-        <button onclick="askAI()">Spørg AI'en</button>
-        <div id="responseBox" class="response-box" style="display: none;"></div>
-    </div>
+  <div class="container">
+    <h2>📚 GradeUpAI - Studieassistent 📚</h2>
+    <input type="text" id="questionInput" placeholder="Skriv dit spørgsmål her...">
+    <button onclick="askAI()">Spørg AI'en</button>
+    <div id="responseBox" class="response-box" style="display: none;"></div>
+  </div>
 
-    <script>
-        async function askAI() {
-            const questionInput = document.getElementById("questionInput");
-            const responseBox = document.getElementById("responseBox");
-            const question = questionInput.value.trim();
+  <script>
+    async function askAI() {
+      const questionInput = document.getElementById("questionInput");
+      const responseBox = document.getElementById("responseBox");
+      const question = questionInput.value.trim();
 
-            if (!question) return;
+      if (!question) return;
 
-            responseBox.style.display = "block";
-            responseBox.innerHTML = "⏳ Tænker over dit spørgsmål...";
+      responseBox.style.display = "block";
+      responseBox.innerHTML = "⏳ Tænker over dit spørgsmål...";
 
-            try {
-                const response = await fetch("https://api.openai.com/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "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"
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-4",
-                        messages: [
-                            { role: "system", content: "Du er en avanceret studieassistent, der hjælper elever med at besvare og skrive opgaver." },
-                            { role: "user", content: question }
-                        ]
-                    })
-                });
+      try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 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"
+          },
+          body: JSON.stringify({
+            model: "gpt-4",
+            messages: [
+              { role: "system", content: "Du er en avanceret studieassistent, der hjælper elever med at besvare og skrive opgaver." },
+              { role: "user", content: question }
+            ]
+          })
+        });
 
-                if (!response.ok) {
-                    throw new Error(`Fejl! Status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                if (data.choices && data.choices.length > 0) {
-                    responseBox.innerHTML = `<strong>Svar:</strong> ${data.choices[0].message.content}`;
-                } else {
-                    responseBox.innerHTML = "⚠️ AI'en kunne ikke generere et svar. Prøv igen.";
-                }
-
-            } catch (error) {
-                console.error("Fejl under API-kald:", error);
-                responseBox.innerHTML = "❌ Der opstod en fejl. Tjek din API-nøgle og internetforbindelse.";
-            }
+        if (!response.ok) {
+          throw new Error(`Fejl! Status: ${response.status}`);
         }
-    </script>
+
+        const data = await response.json();
+        if (data.choices && data.choices.length > 0) {
+          responseBox.innerHTML = `<strong>Svar:</strong> ${data.choices[0].message.content}`;
+        } else {
+          responseBox.innerHTML = "⚠️ AI'en kunne ikke generere et svar. Prøv igen.";
+        }
+
+      } catch (error) {
+        console.error("Fejl under API-kald:", error);
+        responseBox.innerHTML = "❌ Der opstod en fejl. Tjek din API-nøgle og internetforbindelse.";
+      }
+    }
+  </script>
 
 </body>
 </html>
