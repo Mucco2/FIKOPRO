@@ -4,61 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GradeUpAI - Studieassistent</title>
+  <!-- Google Fonts for et pænere udseende -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #3b82f6, #9333ea);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #3b82f6, #9333ea);
       margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
     }
-    .container {
-      background: white;
-      padding: 20px;
+    .card {
+      background: #ffffff;
+      width: 400px;
+      padding: 30px;
       border-radius: 12px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      width: 350px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       text-align: center;
-      color: black;
+      color: #333;
     }
-    input {
-      width: 90%;
-      padding: 10px;
-      border: 1px solid #ccc;
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
       border-radius: 6px;
-      margin-bottom: 10px;
+      font-size: 16px;
     }
     button {
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
       width: 100%;
+      padding: 12px;
+      background-color: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
     button:hover {
       background-color: #2563eb;
     }
     .response-box {
-      margin-top: 15px;
-      padding: 10px;
+      margin-top: 20px;
+      padding: 15px;
       background: #f3f4f6;
-      color: black;
       border-radius: 6px;
       text-align: left;
-      font-size: 14px;
+      font-size: 15px;
+      color: #333;
+      min-height: 80px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>📚 GradeUpAI - Studieassistent 📚</h2>
+  <div class="card">
+    <h1>📚 GradeUpAI - Studieassistent 📚</h1>
     <input type="text" id="questionInput" placeholder="Skriv dit spørgsmål her...">
     <button onclick="askAI()">Spørg AI'en</button>
     <div id="responseBox" class="response-box" style="display: none;"></div>
@@ -80,7 +95,8 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "sk-svcacct-X3ZfbPb9Yufeqgpqkj89_3vaUhRLd-Gol7BsrCvVdiGPh68RjkyiqBTHDiL90T3BlbkFJHaJ0KXsyMT1KUwHSWRqafcGp61T2vqW6_SxxbIRxQ2cqcoHfTPvbt9gqInwAA"
+            // API-nøgle til test (bemærk at denne nøgle er synlig!)
+            "Authorization": "Bearer sk-svcacct-X3ZfbPb9Yufeqgpqkj89_3vaUhRLd-Gol7BsrCvVdiGPh68RjkyiqBTHDiL90T3BlbkFJHaJ0KXsyMT1KUwHSWRqafcGp61T2vqW6_SxxbIRxQ2cqcoHfTPvbt9gqInwAA"
           },
           body: JSON.stringify({
             model: "gpt-4",
@@ -101,7 +117,6 @@
         } else {
           responseBox.innerHTML = "⚠️ AI'en kunne ikke generere et svar. Prøv igen.";
         }
-
       } catch (error) {
         console.error("Fejl under API-kald:", error);
         responseBox.innerHTML = "❌ Der opstod en fejl. Tjek din API-nøgle og internetforbindelse.";
